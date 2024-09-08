@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/FovCruz-Portfolio/static/css/main.9ac921af.css",
+    "main.js": "/FovCruz-Portfolio/static/js/main.94550e3a.js",
+    "static/js/453.7d1ffe6d.chunk.js": "/FovCruz-Portfolio/static/js/453.7d1ffe6d.chunk.js",
+    "index.html": "/FovCruz-Portfolio/index.html",
+    "main.9ac921af.css.map": "/FovCruz-Portfolio/static/css/main.9ac921af.css.map",
+    "main.94550e3a.js.map": "/FovCruz-Portfolio/static/js/main.94550e3a.js.map",
+    "453.7d1ffe6d.chunk.js.map": "/FovCruz-Portfolio/static/js/453.7d1ffe6d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9ac921af.css",
+    "static/js/main.94550e3a.js"
+  ]
+}
