@@ -1,12 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
 import { AuthProvider } from './auth.tsx';
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container!);  // Aquí se usa createRoot en lugar de ReactDOM.render
+root.render(
   <AuthProvider>
     <App />
-  </AuthProvider>,
-  document.getElementById('root')
+  </AuthProvider>
 );

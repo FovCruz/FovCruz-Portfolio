@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+/* import React, { useEffect, useState } from 'react';
 
 // Define la interfaz para los proyectos
 interface Project {
@@ -27,7 +27,6 @@ const PublicProjectList: React.FC = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6 text-center">Proyectos Públicos</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project) => (
           <div key={project._id} className="bg-white p-4 rounded shadow">
@@ -42,3 +41,4 @@ const PublicProjectList: React.FC = () => {
 };
 
 export default PublicProjectList;
+ */

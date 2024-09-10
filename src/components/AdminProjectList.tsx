@@ -21,10 +21,14 @@ const AdminProjectList: React.FC = () => {
     fetchProjects();
   }, []);
 
-  const handleDelete = async (id: string) => {
-    if (window.confirm('¿Estás seguro de que quieres eliminar este proyecto?')) {
-      await fetch(`http://localhost:5000/api/projects/${id}`, { method: 'DELETE' });
-      setProjects(projects.filter(project => project._id !== id));
+  // Nueva función para eliminar proyectos
+  const handleDelete = async (projectId: string) => {
+    const response = await fetch(`http://localhost:5000/api/projects/${projectId}`, {
+      method: 'DELETE',
+    });
+    if (response.ok) {
+      // Actualizar la lista de proyectos después de eliminar uno
+      setProjects(projects.filter((project) => project._id !== projectId));
     }
   };
 
@@ -37,9 +41,10 @@ const AdminProjectList: React.FC = () => {
           <div key={project._id} className="bg-white p-4 rounded shadow">
             <h3 className="text-xl font-semibold">{project.title}</h3>
             <p>{project.description}</p>
-            <div className="flex space-x-2">
-              <Link to={`/admin/edit/${project._id}`} className="text-blue-500">Editar</Link>
-              <button onClick={() => handleDelete(project._id)} className="text-red-500">Eliminar</button>
+            {/* Agregar botones de Editar y Eliminar */}
+            <div className="mt-4 flex justify-between">
+              <Link to={`/admin/edit/${project._id}`} className="bg-green-500 text-white py-1 px-3 rounded">Editar</Link>
+              <button onClick={() => handleDelete(project._id)} className="bg-red-500 text-white py-1 px-3 rounded">Eliminar</button>
             </div>
           </div>
         ))}

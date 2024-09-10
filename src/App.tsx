@@ -1,32 +1,65 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import PublicProjectList from './components/PublicProjectList.tsx';
 import ProjectForm from './components/ProjectForm.tsx';
 import Login from './components/Login.tsx';
 import AdminProjectList from './components/AdminProjectList.tsx';
-import { useAuth } from './auth.tsx';  // Importa el hook de autenticación
+import EditProject from './components/EditProject.tsx';  // Componente para editar proyectos
+import { useAuth } from './auth.tsx';
+import Navbar from './components/Navbar.tsx';
+import Footer from './components/Footer.tsx';
+import KnowledgeSection from './components/KnowledgeSection.tsx';
+import ExperienceSection from './components/ExperienceSection.tsx';
+import ContactSection from './components/ContactSection.tsx';
+import ProjectsSection from './components/ProjectsSection.tsx';
+import './carousel.scss';
 
 function App() {
-  const { isAuthenticated } = useAuth();  // Verifica si el usuario está autenticado
+  const { isAuthenticated } = useAuth();
 
   return (
     <Router>
       <div className="min-h-screen bg-gray-100">
-        <header className="bg-blue-600 text-white p-4">
-          <h1 className="text-3xl">Portafolio</h1>
-        </header>
+        <Navbar />
+
         <main className="container mx-auto py-8">
           <Routes>
-            {/* Rutas públicas */}
-            <Route path="/" element={<PublicProjectList />} />
-            <Route path="/login" element={<Login />} />
+            <Route
+              path="/"
+              element={
+                <>
+                  <section id="proyectos" className="et-slide h-screen bg-gray-200 flex flex-col justify-center items-center">
+                    <ProjectsSection />
+                  </section>
+                  <section id="conocimientos" className="et-slide h-screen bg-gray-200 flex flex-col justify-center items-center">
+                    <h1 className="text-4xl">Conocimientos</h1>
+                    <KnowledgeSection />
+                  </section>
+                  <section id="experiencia" className="et-slide h-screen bg-gray-200 flex flex-col justify-center items-center">
+                    <h1 className="text-4xl">Experiencia</h1>
+                    <ExperienceSection />
+                  </section>
+                  <section id="contacto" className="et-slide h-screen bg-gray-200 flex flex-col justify-center items-center">
+                    <h1 className="text-4xl">Contacto</h1>
+                    <ContactSection />
+                  </section>
+                  <section id="sobremi" className="et-slide h-screen bg-gray-200 flex flex-col justify-center items-center">
+                    <h1 className="text-4xl">Sobre Mí</h1>
+                    <p>Me llamo Fabian Valencia Cruz, ingeniero informático con habilidades Fullstack.</p>
+                    <p>Obtenidas en Desafio latam en el bootcamp FullStack Python.</p>
+                  </section>
+                </>
+              }
+            />
 
-            {/* Rutas privadas (solo accesibles si está autenticado) */}
+            <Route path="/login" element={<Login />} />
             <Route path="/admin/projects" element={isAuthenticated ? <AdminProjectList /> : <Navigate to="/login" />} />
             <Route path="/admin/create" element={isAuthenticated ? <ProjectForm /> : <Navigate to="/login" />} />
-            <Route path="/admin/edit/:id" element={isAuthenticated ? <ProjectForm /> : <Navigate to="/login" />} />
+            {/* Nueva ruta para editar proyectos */}
+            <Route path="/admin/edit/:id" element={isAuthenticated ? <EditProject /> : <Navigate to="/login" />} />
           </Routes>
         </main>
+
+        <Footer />
       </div>
     </Router>
   );
